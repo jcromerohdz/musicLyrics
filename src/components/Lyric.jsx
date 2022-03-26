@@ -1,9 +1,10 @@
 import useLyrics from "../hooks/useLyrics"
 
 const Lyric = () => {
-  const { lyric } = useLyrics()
+  const { lyric, loading } = useLyrics()
   return (
-    <div className="letra">{ lyric }</div>
+    loading ? 'Loading...' :
+      <div className="letra">{ lyric }</div>
   )
 }
 

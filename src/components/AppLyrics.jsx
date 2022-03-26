@@ -6,7 +6,7 @@ import useLyrics from '../hooks/useLyrics'
 
 const AppLyrics = () => {
 
-  const { alert, lyric } = useLyrics()
+  const { alert, lyric, loading } = useLyrics()
   
   return (
     <>
@@ -14,7 +14,13 @@ const AppLyrics = () => {
       <Form />
 
       <main>
-        {alert ? <Alert>{alert}</Alert> : lyric ? <Lyric /> : <p className='text-center'>Search you favorite songs from your favorite artists!</p>}
+        {alert ? <Alert>{alert}</Alert> : 
+          lyric ? <Lyric /> : 
+            loading ? 'Loading..' :
+            <p className='text-center'>
+              Search you favorite songs from your favorite artists!
+            </p>
+        }
 
       </main>
     </>

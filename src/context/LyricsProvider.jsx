@@ -8,17 +8,21 @@ const LyricsProvider = ({children}) => {
 
   const [alert, setAlert] = useState('')
   const [lyric, setLyric] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const lyricsSearch = async(search) => {
+    setLoading(true)
     try {
       const { artist, song } = search
       const url = `https://api.lyrics.ovh/v1/${artist}/${song}`
       const {data} = await axios(url)
       setLyric(data.lyrics)
-      
+      setAlert('')
     } catch (error) {
       console.log(error)
+      setAlert('Song not found!!')
     }
+    setLoading(false)
   }
 
   return (
@@ -27,7 +31,8 @@ const LyricsProvider = ({children}) => {
         alert,
         setAlert,
         lyricsSearch,
-        lyric
+        lyric,
+        loading
       }}
     >
       {children}
